@@ -2,10 +2,6 @@ CREATE DATABASE smartpharma;
 USE smartpharma;
 
 
-CREATE INDEX idx_user_email ON users(email);
-CREATE INDEX idx_products_owner ON products(owner_id);
-CREATE INDEX idx_orders_user ON orders(user_id);
-
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -77,3 +73,7 @@ CREATE TABLE pharmacy_profiles (
 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE INDEX idx_user_email ON users(email);
+CREATE INDEX idx_products_owner ON products(owner_id);
+CREATE INDEX idx_orders_user ON orders(user_id);
