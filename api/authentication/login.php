@@ -44,14 +44,14 @@ if (!password_verify($password, $user['password'])) {
     exit;
 }
 // Login successful
+session_start();
+
+// Save user info in session
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['role'] = $user['role'];
+
 echo json_encode([
     "status" => "success",
-    "message" => "Login successful",
-    "user" => [
-        "id" => $user['id'],
-        "username" => $user['username'],
-        "email" => $user['email'],
-        "role" => $user['role']
-    ]
+    "message" => "Login successful"
 ]);
 ?>

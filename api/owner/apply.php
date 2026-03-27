@@ -1,14 +1,17 @@
 <?php
+
 header("Content-Type: application/json");
 
+require __DIR__ . '/../middleware/auth.php'; // session + auth
 require __DIR__ . '/../../configuration/database.php';
+
+$user_id = $_SESSION['user_id'];
 
 // Get JSON input
 $data = json_decode(file_get_contents("php://input"), true);
 
 // Validate required fields
 if (
-    empty($data['user_id']) ||
     empty($data['pharmacy_name']) ||
     empty($data['first_name']) ||
     empty($data['last_name']) ||
@@ -23,17 +26,17 @@ if (
     exit;
 }
 
-$user_id = $data['user_id'];
-
-//  Check if user already applied
-$stmt = $pdo->prepare("SELECT id FROM pharmacy_profiles 
-WHERE user_id = ? AND status = 'pending'");
+// Check pending application
+$stmt = $pdo->prepare("
+    SELECT id FROM pharmacy_profiles 
+    WHERE user_id = ? AND status = 'pending'
+");
 $stmt->execute([$user_id]);
 
 if ($stmt->rowCount() > 0) {
     echo json_encode([
         "status" => "error",
-        "message" => "You have already applied wait until your current application is processed"
+        "message" => "You already have a pending application"
     ]);
     exit;
 }
