@@ -7,7 +7,7 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('user', 'owner') DEFAULT 'user',
+    role ENUM('user', 'owner','admin') DEFAULT 'user',
     phone varchar(15) ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
