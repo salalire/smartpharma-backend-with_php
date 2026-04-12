@@ -2,7 +2,8 @@
 
 header("Content-Type: application/json");
 
-require __DIR__ . '/../middleware/auth.php'; // session + auth
+require __DIR__ . '/../middleware/auth.php';
+require __DIR__ . '/../../configuration/cors.php';
 require __DIR__ . '/../../configuration/database.php';
 
 $user_id = $_SESSION['user_id'];

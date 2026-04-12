@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-
+require __DIR__ . '/../../configuration/cors.php';
 require __DIR__ . '/../../configuration/database.php';
 
 // Get JSON input

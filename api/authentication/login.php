@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-
+require __DIR__ . '/../../configuration/cors.php';
 require __DIR__ . '/../../configuration/database.php';
 
 // Get JSON input
@@ -52,6 +52,11 @@ $_SESSION['role'] = $user['role'];
 
 echo json_encode([
     "status" => "success",
-    "message" => "Login successful"
+    "user" => [
+        "id" => $user['id'],
+        "username" => $user['username'],
+        "email" => $user['email'],
+        "role" => $user['role']
+    ]
 ]);
 ?>
