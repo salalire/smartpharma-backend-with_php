@@ -1,21 +1,13 @@
 <?php
-
-$allowed_origins = [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://127.0.0.1",
-    "http://localhost"
-];
+// Session cookie settings — must be set BEFORE session_start()
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_path', '/');
+ini_set('session.cookie_domain', '');
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
-// Also allow any 127.0.0.1 or localhost with any port
-if ($origin && (
-    in_array($origin, $allowed_origins) ||
-    preg_match('/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/', $origin)
-)) {
+if ($origin && preg_match('/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/', $origin)) {
     header("Access-Control-Allow-Origin: " . $origin);
 }
 
