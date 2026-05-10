@@ -51,8 +51,25 @@ The **SmartPharma Backend** is the engine behind the online medicine shop. It pr
 ---
 
 ## 📂 Project Structure
-
-
+```
+SmartPharma-Backend/
+│
+├─ public/             # Entry point (index.php, API endpoints)
+│
+├─ src/
+│   ├─ config/         # Database & environment configuration
+│   ├─ controllers/    # Business logic (handling requests)
+│   ├─ models/         # Database schemas & queries
+│   ├─ routes/         # API route definitions
+│   ├─ middleware/     # Authentication, validation, security
+│   └─ helpers/        # Utility functions
+│
+├─ tests/              # Unit & integration tests
+├─ docs/               # API documentation
+├─ vendor/             # Composer dependencies
+├─ composer.json       # PHP dependencies & autoload
+└─ README.md
+```
 
 
 ---
