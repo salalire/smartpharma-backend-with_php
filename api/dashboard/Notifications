@@ -1,0 +1,28 @@
+<?php
+// File: api/notifications/send.php
+
+require_once '../middleware/auth.php';
+require_once '../db.php';
+
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    $userId = $input['user_id'] ?? null;
+    $message = $input['message'] ?? null;
+
+    if (!$userId || !$message) {
+        echo json_encode(['status' => 'error', 'message' => 'Missing user_id or message']);
+        exit;
+    }
+
+    try {
+        $stmt = $pdo->prepare("INSERT INTO notifications (user_id, message, created_at) VALUES (:user_id, :message, NOW())");
+        $stmt->execute(['user_id' => $userId, 'message' => $message]);
+
+        echo json_encode(['status' => 'success', 'message' => 'Notification sent']);
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+}
