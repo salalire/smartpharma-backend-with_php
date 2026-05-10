@@ -2,10 +2,11 @@
 
 **Developed By:**
 - **Samuel Lire**
+- **Paulos Asmelash**
 - **Salim Ahmed**
 - **Rahmet Abdela**
 - **Sara Redwan**
-- **Paulos Asmelash**
+
 
 # SmartPharma Backend 💊
 
