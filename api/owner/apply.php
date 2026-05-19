@@ -51,8 +51,8 @@ if ($stmt->rowCount() > 0) {
 
 $stmt = $pdo->prepare("
     INSERT INTO pharmacy_profiles 
-    (user_id, pharmacy_name, first_name, middle_name, last_name, tin_number, region, city, sub_city, woreda)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (user_id, pharmacy_name, first_name, middle_name, last_name, tin_number, region, city, sub_city, woreda, license_image)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $success = $stmt->execute([
@@ -65,7 +65,8 @@ $success = $stmt->execute([
     $data['region'],
     $data['city'],
     $data['sub_city'] ?? null,
-    $data['woreda']    ?? null
+    $data['woreda']    ?? null,
+    $data['license_image'] ?? null
 ]);
 
 if ($success) {
